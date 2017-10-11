@@ -1,0 +1,58 @@
+\documentclass[tikz, border=2mm]{standalone}
+\usepackage{tikz-uml}
+
+\begin{document}
+	\begin{tikzpicture}
+		\umlclass{Student}{
+		- name: String\\
+		- gender: Boolean\\
+		- studentID: String\\
+		- maxQuota: Integer\\
+		- books: Book[ ]
+		}{
+		+ borrow(x: Book[ ]): Boolean\\
+		+ return(x: Book[ ]): Boolean\\
+		+ payFine(): Boolean\\
+		+ updateInfo(): Boolean
+		}
+		\umlclass[x=6,y=0]{Book}{
+		- name: String\\
+		- author: String\\
+		- publisher: String\\
+		- publicationDate: Date\\
+		- pageNum: Integer\\
+		- ISBN: String\\
+		- category: String\\
+		- price: Double\\
+		- language: String\\
+		- format: String\\
+		- shelf: Integer\\
+		- isBorrowed: Boolean\\
+		- readerID: String\\
+		- loanPeriod: Integer\\
+		- timeBorrowed: Date\\
+		- expectedDue: Date\\
+		- isReference: Boolean
+		}{
+		+ lend(x: Student): Boolean\\
+		+ return(x: Student): Boolean\\
+		+ modifyRecord()
+		}
+		\umlassoc{Student}{Book}
+		
+		\umlclass[x=0,y=-6]{Librarian}{
+		- name: String\\
+		- gender: Boolean\\
+		- phoneNumber: String\\
+		- position: String
+		}{
+		+ movetoShelf(x: Book[ ], shelf: Integer)\\
+		+ addBook(x: Book)\\
+		+ deleteBook(x: Book)\\
+		+ banUser(x: Student)
+		}
+		
+		\umluniassoc{Librarian}{Student}
+		\umluniassoc[geometry=-|]{Librarian}{Book}
+	\end{tikzpicture}
+\end{document}

@@ -1,0 +1,63 @@
+% !TeX program = xelatex
+\documentclass[tikz, border=2mm]{standalone}
+\usepackage{xeCJK}
+\usepackage{tikz-uml}
+
+\begin{document}
+	\begin{tikzpicture}
+		\umlclass{Car（厂家）}{
+		- carType: String\\
+		- model: String\\
+		- serialNumber: String\\
+		- manufactureDate: Date\\
+		- batchNumber: Integer\\
+		- factoryID: Integer\\
+		- color: String\\
+		- advisoryPrice: Integer\\
+		- size: Size\\
+		- engineModel: String\\
+		- maxcruiseSpeed: Integer\\
+		- warrantyExpire: Date
+		}{
+		assemble()\\
+		destroy()\\
+		+ test()\\
+		+ releasetoRetailer()\\
+		+ recall(batch: Integer)
+		}
+		\umlclass[x=6,y=0]{Car（车主）}{
+		- brand: String\\
+		- carType: String\\
+		- model: String\\
+		- dateBought: Date\\
+		- price: Double\\
+		- warrantyExpire: Date\\
+		- passengerList: String[ ]\\
+		- carConfiguration: Configuration
+		}{
+		+ getInto(person: String)\\
+		+ getOff(person: String)\\
+		+ adjustWindow(windowNum: Integer)\\
+		+ autoPilot()\\
+		+ steer()\\
+		+ setThrottle(level: Integer)
+		}		
+		\umlclass[x=13,y=0]{Car（交通管理机构）}{
+		- carOwner: String\\
+		- brand: String\\
+		- carType: String\\
+		- color: String\\
+		- speed: Double\\
+		- seenAddress: String\\
+		- seenTime: Date\\
+		- overSpeed: bool\\
+		- licensePlateNumber: String\\
+		- totalFine: Double\\
+		- annualChecked: bool
+		}{
+		+ checkSpeed()\\
+		+ issueTicket(totalFine: Double)\\
+		+ modifyRecord()
+		}
+	\end{tikzpicture}
+\end{document}
